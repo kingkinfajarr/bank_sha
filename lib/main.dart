@@ -1,5 +1,6 @@
-import 'package:bank_sha/ui/pages/splash_page.dart';
 import 'package:flutter/material.dart';
+
+import 'ui/pages/pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: const MaterialApp(
+      child: MaterialApp(
         title: 'Bank Sha',
         debugShowCheckedModeBanner: false,
-        home: SplashPage(),
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/onboarding': (context) => const OnboardingPage(),
+          '/sign-in': (context) => const SignInPage(),
+          '/sign-up': (context) => const SignUpPage(),
+          '/sign-up-set-profile': (context) => const SignUpSetProfilePage(),
+          '/sign-up-set-ktp': (context) => const SignUpSetKtpPage(),
+          '/sign-up-success': (context) => const SignUpSuccessPage(),
+          '/home': (context) => const HomePage(),
+        },
       ),
     );
   }
