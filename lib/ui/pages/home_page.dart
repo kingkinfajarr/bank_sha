@@ -1,6 +1,4 @@
 import 'package:bank_sha/shared/shared.dart';
-import 'package:bank_sha/ui/widgets/home_tips_item.dart';
-import 'package:bank_sha/ui/widgets/home_user_item.dart';
 import 'package:bank_sha/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +8,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
         color: whiteColor,
@@ -78,7 +75,7 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         children: [
-          _buildProfile(),
+          _buildProfile(context),
           _buildWalletCard(),
           _buildlevel(),
           _buildServices(),
@@ -90,7 +87,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfile() {
+  Widget _buildProfile(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 42, bottom: 32),
       child: Row(
@@ -115,32 +112,37 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/img_profile.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/img_profile.png',
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
-            ),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: whiteColor,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.check_circle,
-                    color: greenColor,
-                    size: 14,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: whiteColor,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: greenColor,
+                      size: 14,
+                    ),
                   ),
                 ),
               ),
